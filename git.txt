@@ -1,0 +1,155 @@
+https://github.com/a2adu/a2adu.git
+
+git config --global user.email ""
+
+git config --global user.name ""
+
+git config --global user.password ""
+
+git init [for a new project on local server]
+
+or
+
+git clone https://github.com/a2adu/a2adu.git
+
+then
+
+git remote set-url origin https://github.com/a2adu/a2adu.git
+
+
+git status [to check if changed]
+
+git add changed file  | git add *
+
+git commit -a -m "Adding a file"
+
+git push -u origin master
+
+After this command, u get sometimes this error:
+
+error: failed to push some refs to 'https://github.com/a2adu/a2adu.git' [my case was git pull origin main (instead of master), different naming at website]
+
+git push origin master [ doesn't work, shall use (git branch -m master main; git push -u origin main; git remote set-head origin main) to rename master into main ]:
+
+	The main branch has already replaced all new github repos as the main branch. You can read up on it here. There is no actual difference between main and master, 
+	it's just the name of the default branch.For you git push origin master just creates a new branch called master (since it doesn't exist already) and pushes your 
+	current commits there.
+
+
+from github devs ""They just changed the default branch for new repositories. You can also set it back to master here -> https://github.com/settings/repositories
+
+
+
+
+it is because the local repository wasn't commited, u have no
+files on your local server
+you might apply this command:
+
+git commit --allow-empty -m "Initial empty commit"
+
+or add/edit a file and use a commit:
+touch index.html
+git add index.html
+git commit -a -m "First file addded"
+
+or you could try this liner to fix it:
+
+git pull --rebase origin master
+
+otherwise the public-key at github isn't set, to sort it out:
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+Note: If you are using a legacy system that doesn't support the Ed25519 algorithm, use:
+
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+it is saved at: C:/Users/a2/.ssh/id_ed25519
+
+Adding your SSH key to the ssh-agent:
+
+# start the ssh-agent in the background
+$ eval "$(ssh-agent -s)"
+> Agent pid 59566
+
+ssh-add ~/.ssh/id_ed25519 // type in a passphrase
+
+
+then head to github.com settings ->> ssh key from a ssh-ed25519-pub file on your local system.
+
+you could use  clip < ~/.ssh/id_ed25519.pub to copy it faster
+
+
+
+
+""""
+
+check of remote applied origin
+
+by simply typing:
+
+git remote -v
+
+then you could check  what link is applied to an origin:
+
+git remote get-url --all origin #to check if it is correctly linked
+
+
+"""
+
+//
+master is a local branch
+
+origin/master is a remote branch (which is a local copy of the branch named "master" one the remote named "origin")
+
+origin is a remote
+
+//
+
+
+check what are links to remote origin and remote master:
+
+git remote get-url --all origin
+
+
+change it to:
+
+git remote set-url origin https://github.com/a2adu/a2adu.git
+
+
+##################################################################################################################################################
+
+You need to know that
+A. origin master is two separate things, master is a local branch and origin is a remote
+B. origin/master is one thing, origin/master is a remote branch (which is a local copy of the branch named "master" on the remote named "origin")
+
+#################################################################################################################################################
+
+
+$ git fetch origin master
+
+Then you merge origin/master into master.
+
+$ git merge origin/master
+
+Now you are ready to push your new changes in master back to origin:
+
+$ git push origin master
+
+Excluding a particular file or folder:
+
+Just add the file to .gitignore.
+
+
+Inside the .git folder for your project, there is a file /info/exclude. This file has the exact same structure as a .gitignore file, so you 
+can add the file patterns for any files which must be excluded locally, inside that file.
+
+or using a command like so : 
+
+git add -u -except main/dontcheckmein.txt
+
+
+
+
+
+
