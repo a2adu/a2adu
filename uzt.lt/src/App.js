@@ -6,6 +6,7 @@ import TopNav from "./components/TopNav";
 import ContainerMenu from "./components/ContainerMenu";
 import Infobar from "./components/Infobar";
 import Newsletter from "./components/Newsletter";
+import Footer from "./components/Footer";
 import FooterBottom from "./components/FooterBottom";
 
 function App() {

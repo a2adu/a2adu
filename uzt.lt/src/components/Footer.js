@@ -3,15 +3,14 @@ import React from 'react'
 const Footer = () =>{
 return (
 	<div className="elementor-container elementor-column-gap-default">
-	<div className="elementor-row">
 	<div className="elementor-element elementor-element-1e64df3 elementor-column elementor-col-20 elementor-inner-column" data-id="1e64df3" data-element_type="column">
 	   <div className="elementor-column-wrap  elementor-element-populated">
 	      <div className="elementor-widget-wrap">
-		 <div className="elementor-element elementor-element-ae8c911 elementor-widget elementor-widget-heading" data-id="ae8c911" data-element_type="widget" data-widget_type="heading.default">
-		    <div className="elementor-widget-container">
-		       <h4 className="elementor-heading-title elementor-size-default">Struktūra ir kontaktai</h4>
-		    </div>
-		 </div>
+				<div className="elementor-element elementor-element-ae8c911 elementor-widget elementor-widget-heading" data-id="ae8c911" data-element_type="widget" data-widget_type="heading.default">
+					<div className="elementor-widget-container">
+						<h4 className="elementor-heading-title elementor-size-default">Struktūra ir kontaktai</h4>
+					</div>
+				</div>
 		 <div className="elementor-element elementor-element-6c7f8db elementor-align-left elementor-icon-list--layout-traditional elementor-widget elementor-widget-icon-list" data-id="6c7f8db" data-element_type="widget" data-widget_type="icon-list.default">
 		    <div className="elementor-widget-container">
 		       <ul className="elementor-icon-list-items">
@@ -55,7 +54,7 @@ return (
 		 <div className="elementor-element elementor-element-bf2c3ba elementor-widget elementor-widget-image" data-id="bf2c3ba" data-element_type="widget" data-widget_type="image.default">
 		    <div className="elementor-widget-container">
 		       <div className="elementor-image">
-		          <a href="https://heyzine.com/flip-book/c1034a5647.html" target="_blank" užimtumo="" tarnyba="" className="no-lightbox">
+		          <a href="https://heyzine.com/flip-book/c1034a5647.html" target="_blank" užimtumo="" tarnyba="" className="no-lightbox">&nbsp;</a>
 		       </div>
 		    </div>
 		 </div>
@@ -270,13 +269,8 @@ return (
 		 </div>
 	      </div>
 	   </div>
-	</div>
-	<div className="elementor-element elementor-element-6f93b08 elementor-column elementor-col-20 elementor-inner-column" data-id="6f93b08" data-element_type="column">
-	<div className="elementor-column-wrap  elementor-element-populated">
-	<div className="elementor-widget-wrap">
-	<div className="elementor-element elementor-element-76b9e4e elementor-widget elementor-widget-html" data-id="76b9e4e" data-element_type="widget" data-widget_type="html.default">
-	<div className="elementor-widget-container">
-	</div>
+	 </div>
+</div> 
 	);
 };
 

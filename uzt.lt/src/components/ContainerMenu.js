@@ -1,5 +1,4 @@
 import React from 'react'
-{/* Importing container menu images  */}
 import pic1 from './images/1.png' 
 import pic2 from './images/2.png' 
 import pic3 from './images/3.png' 
@@ -10,6 +9,8 @@ import pic7 from './images/7.png'
 import pic8 from './images/8.png' 
 import pic9 from './images/9.png' 
 
+{/* import command used to add container menu images  */}
+
 const ContainerMenu = () => {
     return(
 	<div className="elementor-widget-container">
@@ -18,8 +19,9 @@ const ContainerMenu = () => {
 		    <a href="https://uzt.lt/registracija-ut/" registracija="" className="no-lightbox">
 	    		<img width="768" height="769" src={pic1} 
 	    		className="elementor-animation-grow attachment-medium_large size-medium_large" 
-	    		alt="Registracija" srcSet={`${pic1} 768w, ${pic2} 150w, ${pic3} 300w, ${pic4} 1024w, ${pic5} 700w, ${pic6} 1044w sizes="(max-width: 768px) 100vw, 768px`}></a>
-
+	    		alt="Registracija" 
+	    		srcSet={`${pic2} 768w, ${pic3} 150w, ${pic4} 300w, ${pic5} 1024w, ${pic6} 700w, ${pic7} 1044w sizes="(max-width: 768px) 100vw, 768px`}/>
+	    	    </a>
 		</figure>
 		<div className="elementor-image-box-content">
 			 <h3 className="elementor-image-box-title"><a href="https://uzt.lt/registracija-ut/" registracija="">Registracija</a></h3>

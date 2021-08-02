@@ -9,15 +9,15 @@ const FooterBottom = () => {
 		    <div className="elementor-element elementor-element-5cdfdaad elementor-widget elementor-widget-heading" data-id="5cdfdaad" data-element_type="widget" data-widget_type="heading.default">
 		       <div className="elementor-widget-container">
 			  <p className="elementor-heading-title elementor-size-default">
-			     <strong>Klientams paslaugos teikiamos klientų aptarnavimo skyriuose</strong><br>
-			     Užimtumo rėmimo ir karjeros klausimais konsultuokitės 1883 arba +370 5 250 0883<br>
+			     <strong>Klientams paslaugos teikiamos klientų aptarnavimo skyriuose</strong><br/>
+			     Užimtumo rėmimo ir karjeros klausimais konsultuokitės 1883 arba +370 5 250 0883<br/>
 			     Rašykite mums <a href="mailto:info@uzt.lt"><u>info@uzt.lt</u></a>
 			     <br/>
 			     Bendraukime <a href="https://www.facebook.com/uzimtumotarnyba/" target="_blank"><u>„Facebook“</u></a>
-			     ir <a href="https://www.linkedin.com/company/u%C5%BEimtumotarnyba" target="_blank"><u>„LinkedIn“</u></a><br>
+			     ir <a href="https://www.linkedin.com/company/u%C5%BEimtumotarnyba" target="_blank"><u>„LinkedIn“</u></a><br/>
 			     <br/>
 			     <br/>
-			     © Užimtumo tarnyba prie Lietuvos Respublikos socialinės apsaugos ir darbo ministerijos, Valstybės biudžetinė įstaiga <br> Geležinio Vilko g. 3A, LT-03131 Vilnius
+			     © Užimtumo tarnyba prie Lietuvos Respublikos socialinės apsaugos ir darbo ministerijos, Valstybės biudžetinė įstaiga <br/> Geležinio Vilko g. 3A, LT-03131 Vilnius
 			     <br/>Duomenys kaupiami ir saugomi Juridinių asmenų registre. Kodas 190766619
 			  </p>
 		       </div>
@@ -36,4 +36,4 @@ const FooterBottom = () => {
 	 );
 }
 
-export FooterBottom;
+export default FooterBottom;

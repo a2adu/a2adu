@@ -7,7 +7,7 @@ const Infobar = () => {
    data-id="1915eace"
    data-element_type="section"
    data-settings='{"stretch_section":"section-stretched","background_background":"classNameic"}'
-   style="width: 1028px; left: 0px;"
+   style={{width:"1028px", left:"0px"}}
    >
    <div className="elementor-container elementor-column-gap-no">
       <div className="elementor-row">
