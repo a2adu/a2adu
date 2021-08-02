@@ -148,8 +148,14 @@ or using a command like so :
 
 git add -u -except main/dontcheckmein.txt
 
+Getting forcibly all the data from a repo:
 
+get checkout or
 
+get fetch origin main
 
+Getting only one file from repository
 
+git checkout main -- myplugin.js
+git checkout HEAD -- {file}
 

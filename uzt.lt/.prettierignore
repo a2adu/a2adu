@@ -1,0 +1,12 @@
+# Ignore artifacts:
+README.md
+public
+.gitignore
+node_modules
+package.json
+package-lock.json
+.prettierrc.json
+public/README.mds
+public/logo.svg
+public/reportWebVitals.js
+public/setupTests.js

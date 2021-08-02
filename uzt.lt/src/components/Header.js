@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
 
 const Header = () => {
-    let logo = "";	
-    return(<div className="Header-container">
-      <header className="Header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div className="Header-logo">
-       		 Logo  
-        </div>
+  let logo = "";
+  return (
+    <div classNameName="Header-container">
+      <header classNameName="Header">
+        <img src={logo} classNameName="App-logo" alt="logo" />
+        <div classNameName="Header-logo">Logo</div>
         <a
-          className="App-link"
+          classNameName="App-link"
           href="https://uzt.lt"
           target="_blank"
           rel="noopener noreferrer"
@@ -17,8 +16,8 @@ const Header = () => {
           Uzt.lt
         </a>
       </header>
-    </div>);
-};		
+    </div>
+  );
+};
 
 export default Header;
-

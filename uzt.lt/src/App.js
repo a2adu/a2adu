@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './components/Header'
-import TopNav from './components/TopNav'
-import ContainerMenu from './components/ContainerMenu'
-import Infobar from './components/Infobar'
-import Newsletter from './components/Newsletter'
-import FooterBottom from './components/FooterBottom'
+import logo from "./logo.svg";
+import "./App.css";
+import "./Styles.css";
+import Header from "./components/Header";
+import TopNav from "./components/TopNav";
+import ContainerMenu from "./components/ContainerMenu";
+import Infobar from "./components/Infobar";
+import Newsletter from "./components/Newsletter";
+import FooterBottom from "./components/FooterBottom";
 
 function App() {
   return (
@@ -24,15 +25,15 @@ function App() {
           Learn React
         </a>
       </header>
-	<>
-		<Header/>
-		<TopNav/>
-	  	<ContainerMenu/>  
-	  	<Infobar/>
-	  	<Footer/>	
-	  	<Newsletter/>
-	  	<FooterBottom/> 
-	</>
+      <>
+        <Header />
+        <TopNav />
+        <ContainerMenu />
+        <Infobar />
+        <Footer />
+        <Newsletter />
+        <FooterBottom />
+      </>
     </div>
   );
 }
