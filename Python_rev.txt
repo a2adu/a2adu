@@ -1,0 +1,1032 @@
+dir(__builtins__)  - lists the builtin functions of python
+
+or
+
+import builtins
+dir(builtins)
+
+To get all possible built-in methods used with a string:
+
+lol = str("aasdasfa asfasdfa")
+dir(lol) 
+
+str.__doc__  - checks documentation of built-in function str()
+
+Creating a list in two ways:
+
+my_list = list(1,4,'Lol')
+my_list = [1,4,'Lol']
+
+0 in my_listt checks if 0 in a list (false/true)
+	-||-
+0 not in my_listt
+
+my_listt.pop - removes last item
+
+my_list.insert(0,'Apple') - changes list item using index applied
+
+len(my_list) - returns size of an array
+
+my_list.count('Apple') - returns counted value of string 'Apple' in a list
+
+my_listt[0:3] - returns values using range of the indexes applied
+
+Tuples:
+
+A tuple is an immutable container that stores objects in a specific order.
+When a container is immutable it means the contents of the container cannot
+change. That means unlike a list, once you put an object into a tuple, you can no
+longer change it. Once you create a tuple you cannot change the value of any of
+the items in it, you cannot add new items to it, and you cannot remove items
+from it. Tuples are represented with parenthesis. There are two syntaxes to create
+a tuple:
+
+my_tuple = tuple('A','B','C')
+	or
+my_tuple = ('A','B','C')
+
+A tuple with one item in it still needs a comma after the item:
+(‘self_taught’,)
+
+Example:
+
+my_tuple = ('V')
+my_tuple
+
+'V'
+
+my_tuple = ('V',)
+my_tuple
+
+('V',)
+
+Error is shown if you try to put in an object:
+
+my_tuple[1]='red'
+error: Traceback (most recent call last):
+
+You may be wondering why you would want to use a data structure that
+appears to be like a list, but less helpful. Tuples are useful when you are dealing
+with values you know will never change, and you don’t want other parts of your
+program to have the ability to change those values. A good example is if you are
+working with geographic coordinates. You may want to store the longitude and
+latitude of New York in a tuple because you know the longitude and latitude of
+New York is never going to change, and you want to make sure other parts of
+your program don’t have the ability to accidentally change them.
+
+
+Dictionaries are another built-in container for storing objects. They are
+mutable—but unlike lists and tuples—they do not store objects in a specific
+order. Instead, dictionaries are used to map one object (called the key) to another
+object (called the value). Dictionaries are represented with curly brackets. There
+are two syntaxes for creating dictionaries:
+
+my_dict = dict({"america_founded":1776,"new_era":2022})
+
+And:
+
+my_dict = {}
+
+my_dictionary = {}
+
+changing / adding values:
+
+my_dictionary["america_founded"] = 1776
+
+remove a key:
+
+del my_dictionary['america_founded']
+
+Set is one of 4 built-in data types in Python used to store collections of data, the other 3 are List, Tuple, and Dictionary, all with different qualities and usage.
+
+A set is a collection which is both unordered and unindexed.
+
+Sets are unchangeable, meaning that we cannot change the items after the set has been created.
+
+Duplicate values are being ignored.
+
+set1 = {"abc", 34, True, 40, "male"} // lets to store different types in a set numbers, booleans and strings
+
+If a string is more than one line, you need to put it in triple quotes:
+
+“““line one
+line two
+line three
+”””
+
+Strings are iterable. You can access each character in a string with its
+index, just like you can access each item in a tuple. Like tuples, the first
+character in a string starts with index 0 and each subsequent index is
+incremented by 1.
+
+my_string = “LAX”
+my_string[0]
+my_string[1]
+my_string[2]
+
+Strings, like tuples, are immutable. You cannot change characters in a
+string. If you want to change the characters in a string, you need to create a new
+string.
+
+Method
+
+You can pass parameters to a method, which can execute code and return a
+result just like a function. Unlike a function, a method gets called on an object.
+For example if we have a string “Hello” , 
+we could call “Hello”.[method_name]
+
+Built-in method:
+
+“““ If computer programming were a country, it would be the third most
+diverse for languages spoken. ””” .upper()
+
+Sometimes you will want to create a string using variables. This is done
+with the format method:
+
+year_started = “1989”
+creator = “Guido van Rossum”
+country = “the Netherlands”
+
+my_string = “Python was created in {} by {} in {}.”.format(year_started,
+creator, country)
+
+Use of split:
+
+””” Practice doesn’t make perfect. Practice makes myelin, and myelin
+makes perfect.”””.split(“.”)
+
+>> ["Practice doesn't make perfect", ' Practice makes myelin, and
+myelin makes perfect', '']
+
+Use of Join:
+
+The join method lets you add new characters in between every character in a
+string:
+
+my_string = ‘abc’
+join_result = ‘+’.join(my_string)
+
+join_result
+
+>> ‘a+b+c’
+
+You can turn a list of strings into a single string by calling the join method on an
+empty string ( “” ) and passing in a list:
+
+the_Fox = [“The”, “fox”, “jumped”, “over”, “the”, “fence”, “.”]
+one_string = “”.join(the_Fox)
+one_string
+>> The fox jumped over the fence.
+
+The in keyword checks if one string is in another string and returns True or
+False :
+“Playboy” in ””” A picture from Playboy magazine is the
+most widely used for all sorts of image processing
+algorithms” ””
+>> True
+
+Escaping:
+
+“““Sun Tzu said \"The Supreme art of war is to subdue the
+enemy without fighting.\" ”””
+
+“cat ” + “in ” + “the ” + “hat ”
+>> ‘cat in the hat’
+
+“cat” * 3
+>> ‘catcatcat’
+
+Foor looping:
+
+for i in range(0, 10):
+	print(i)
+0..9
+
+my_string = “Python”
+for character in my_string:
+	print(character)
+
+my_list = [“a”, “b”, “c”]
+for item in my_list:
+	print(item)
+
+my_dict = {“self”: “taught”, “programming”: “wizard”}
+for key in my_dict:
+	print(key)
+
+While:
+
+A while loop runs as long as its expression evaluates to True:
+
+x = 10
+while x > 0:
+	print(‘{}’.format(x))
+	x -= 1
+	print(“Happy New Year!”)
+
+>> 10
+>> 9
+>> 8
+>> 7
+>> 6
+>> 5
+>> 4
+>> 3
+>> 2
+>> 1
+>> ‘Happy New Year!’
+
+break:
+
+for i in range(0, 100):
+	print(i)
+	break
+>> 0
+
+The loop goes around once and prints 0 . When the the break keyword is
+executed, the loop ends. This is useful in many situations. For example, we can
+write a program that asks the user for input until they type “q” to quit:
+
+“““If you are unfamiliar the reference in this example, go watch Monty
+Python and the Holy
+Grail!”””
+
+questions = [“What is your name?”, “What is your favorite color?”, “What
+is your quest?”]
+
+n = 0
+
+while True:
+	print(“Type q to quit”)
+	answer = input(questions[n])
+	if answer == “q”:
+		break
+	n += 1
+	if n > 2:
+	n = 0
+
+
+Each time through our infinite loop, our program will ask the user a question
+from our list of questions. We use the variable n to keep track of a number
+which we use as an index to get a question from our questions list. When n
+becomes greater than 2 , we’ve run out of questions and we set n back to 0
+which will ask the first question in the list. This will go on indefinitely, unless
+the user types in “q” , in which case our program hits the break keyword and
+the loop ends, which ends our program.
+
+Continue:
+
+You can use the keyword continue to stop executing a for or while
+loop’s code, and jump to the top of a loop. Say for instance, we want to print the
+numbers from 1 to 5 , except for the number 3 . We can do this by using a for
+loop with the continue keyword:
+
+for i in range(1, 6) :
+	if i == 3:
+		continue
+	print(i)
+
+In our loop, when i equals 3 , our program hits the continue keyword. Instead of
+causing our loop to exit completely—like the break keyword—the loop persists
+but w e get jumped to the top of our loop, which means any of the loop’s code
+that would have executed that time around the loop gets skipped. In this case
+when i is equal to 3 , everything after continue is skipped (in this case print(i)
+). The result is 3 is not printed. While example:
+
+i = 1
+while i < 6:
+  print(i)
+  if i == 3:
+    break
+  i += 1
+
+(turi buti i += 1 o ne =+ 1 !!!)
+
+Nested Loops
+
+
+
+import hello
+hello.print_hello()
+>> ‘Hello’
+
+>>> list1 = [1,2]
+>>> list2 = [2,2]
+>>> added_up = []
+>>> for i in list1:
+	for j in list2:
+		added_up.append(i+j)
+>>> print(added_up)
+[3, 3, 4, 4]
+
+Working With Files
+
+“r” Opens a file for reading only.
+“w” Opens a file for writing only. Overwrites the file if the file exists. If
+the file does not exist, creates a new file for writing.
+“w+” Opens a file for both writing and reading. Overwrites the existing
+file if the file exists. If the file does not exist, creates a new file for reading and
+writing.
+
+my_file = open(“my_file.txt”, “w”)
+my_file.write(“Hello from Python!”)
+my_file.close()
+
+Using with:
+
+Because forgetting to close files you opened can cause problems, there
+is a second, prefered syntax for opening files. The preferred way to open a file in
+Python is to use a compound statement using the with keyword and the syntax
+with open(‘my_file’,[mode]) as [variable_name]: [your_code].
+
+with open(‘my_file.txt’, ‘w’) as my_file:
+	my_file.write(‘Hello from Python!’)
+
+Reading with r:
+
+with open(“my_file.txt”, “r”) as my_file:
+	for line in my_file.read():
+		print(line)
+
+You can only call read on a file once (each time you run your program) to gets
+its contents, so you should save the file contents in a variable or container if you
+need to use the file contents again later in your program. For example, we could
+change the previous example to save the file contents in a list:
+
+my_list = list()
+
+with open(“my_file.txt”, “r”) as my_file:
+	for line in my_file.read():
+		my_list.append(line)
+print(my_list)
+
+Python comes with a built-in module for working with CSV files. CSV
+stands for comma separated value. It is a file format commonly used in
+Microsoft Excel: a program for creating spreadsheets. A comma in a CSV file is
+called a delimiter. Every piece of data separated by a comma represents a cell in
+Excel. Each line of the CSV file represents a row in Excel. Here is an example of
+the contents of a csv file:
+
+# my_file.csv
+one, two, three
+four, five, six
+
+You could load this file into excel and one , two and three would each get their
+own cells in the first row of the spreadsheet; and four , five and six would each
+get their own cells in the second row of the spreadsheet.
+
+writing into csv file:
+
+import csv
+with open (‘ my_file.csv’ , ‘w’ ) as csvfile:
+	spamwriter = csv . writer(csvfile, delimiter = ',’)
+		spamwriter . writerow([ ‘one’, ‘two’, ‘three’ ])
+		spamwriter . writerow([‘ four’, ‘five’, ‘six’ ])
+
+Reading csv file:
+
+import csv
+
+with open(‘my_file.csv’, ‘r’) as csvfile:
+	spamreader = csv . reader(csvfile, delimiter = ',' )
+	for row in spamreader:
+		print ( ',' . join(row))
+
+>> one,two,thre e
+>> four, five, six
+
+Building game hangman:
+
+def hangman ():
+	stage = 0
+	wrong_guesses = [ "" , "________ " , "| | " , "| 0 " , "|
+/|\ " , "| / \ " , "| " ]
+	word = "cat"
+	score_board = [ '__' ] * len (word)
+	win = False	
+	print ( 'Welcome to Hang Man' )
+	while stage < len (wrong_guesses) - 1 :
+		print ( ' \n ' )
+		guess = input ( "Guess a letter" )
+		if guess in word:
+			score_board[word.index(guess)] = guess
+			else :
+				stage += 1
+		print (( ' ' .join(score_board)))
+		print ( ' \n ' .join(wrong_guesses[ 0 : stage + 1 ]))
+		if '__' not in score_board:
+			print ( 'You win! The word was:' )
+			print ( ' ' .join(score_board))
+			win = True
+			break
+	if not win:
+	print ( ' \n ' .join(wrong_guesses[ 0 : stage]))
+	print ( 'You lose!' )
+	
+hangman()
+
+State
+
+One of the fundamental differences between different programming
+paradigms is the handling of state. State is the data your program has access to.
+Programs store data in variables—so state is the value of a program’s variables
+at a given time the program is running.
+
+Imperative Programming
+
+y. Imperative programming
+can be described as “do this, then that”. An imperative program is a sequence of
+steps moving toward a solution—with each step changing the program’s state.
+An example of imperative programming would be:
+x = 2
+y = 4
+z = 8
+
+xyz = x + y + z
+>> 14
+
+Functional Programming
+
+Functional programming is another popular programming paradigm. It
+originates from lambda calculus. Functional programming involves writing
+functions that—given the same input— always return the same output. In
+functional programming, you only program with functions, you do not use
+classes—a feature of object-oriented programming.
+
+There is a lot of jargon in functional programming and Mary Rose Cook does a
+great job cutting through it with her definition, “Functional code is characterised
+by one thing: the absence of side effects. It doesn’t rely on data outside the
+current function, and it doesn’t change data that exists outside the current
+function.”
+
+She follows her definition with an example which I will also share
+with you. 
+
+Here is an unfunctional function:
+
+a = 0
+def increment ():
+	global a
+	a += 1
+
+Here is a functional function :
+
+def increment (a):
+	return a + 1
+
+The first function is unfunctional because it relies on data outside of itself, and
+changes data outside of the current function by incrementing a global variable.
+The second function is functional because it does not rely on any data outside of
+itself, and it does not change any data outside of itself either. Functional
+programmers write functions this way to eliminate side effects—the unintended
+consequences that happen when you are constantly changing the state of your
+program.
+
+Object-oriented Programming
+
+The object-oriented programming paradigm involves writing programs
+where you define and create objects that interact with each other. We’ve been
+programming with objects this whole time—strings, integers and floats are all
+examples of objects. But you can also define your own objects using classes.
+Classes are the blueprint used to create objects. You can think of a class as the
+idea of an object. Think of an orange. An orange is an object. A fruit weighing
+between 2 to 10 ounces is the idea of an orange—a class.
+A class is a compound statement with a header
+followed by suites. You write suites after the header, which can be simple
+statements, as well as compound statements called methods. Methods are like
+functions, but they are defined inside of a class, and can only be called on the
+object the class can create.
+
+Example of a class:
+
+class Orange :
+	print ( "Orange created!" )
+	
+	def print_orange ( self ):
+		print ( self )
+
+self is useful because we can use it to define and access variables that belong to
+our Orange object. We do this by defining a special method called __init__ ,
+which stands for initialize. When you instantiate an object, if you’ve defined a
+method called __init__ , Python automatically calls the __init__ method for you
+when the object is created. Inside __init__ we can give our Orange object
+variables with the syntax self.[variable_name] = [variable_value] . Here is an
+example:
+
+class Orange :
+	print ( "Orange created!" )
+	def __init__ ( self ):
+		self .color = "orange"
+		self .weight = 10
+	
+	def print_orange ( self ):
+		print ( self )
+		print ( self .color)
+		print ( self .weight)
+
+orange = Orange()
+orange.print_orange()
+
+Using __init__ we can now create oranges that get a color and weight when
+initialized and we can use and change these variables in any of our methods just
+like regular variables. In Python, any method surrounded on both sides by
+underscores is called a magic method which means it does something special
+
+We can change our class definition so the person creating the object can
+pass in their own variables when they create a new orange, instead of the weight
+and color starting with default values . Here is our new class definition:
+
+
+class Orange :
+	def __init__ ( self , weight , color , mold):
+		self .weight = weight
+		self .color = color
+
+>>> orange=Orange(10,'orange')
+>>> print(orange.weight)
+10
+>>> print(orange.color)
+orange
+>>> 
+
+We can change any of the values:
+
+orange.weight = 100
+print (orange.weight)
+>> 100
+
+class Orange ():
+	def __init__ ( self ):
+		self .weight = 6
+		self .color = 'orange'
+		self .mold = 0
+
+	def rot ( self , days , temperature):
+		self .mold = days * (temperature * .1 )
+
+orange = Orange()
+print (orange.mold)
+orange.rot( 10 , 98 )
+print (orange.mold)
+>> 0
+>> 98.0
+
+Now our orange objects will be able to rot. We defined a method that accepts the
+number of days it's been since the orange was picked, and the average
+temperature during that time as parameters. With our made-up formula, we can
+increase the amount of mold the orange has every time we call the rot method;
+and our orange now has the ability to rot.
+
+There are four main concepts in object-oriented programming—often called
+the four pillars of object-oriented programming: inheritance, polymorphism,
+abstraction and encapsulation. These concepts must all be present in a
+programming language in order for it to be considered an object-oriented
+programming language. Python, Java and Ruby are all examples of object oriented languages. Not all programming languages support object-oriented
+programming—for example Haskell is a functional programming language that
+does not support object-oriented programming. In this chapter, we take a deeper
+look at object-oriented programming by exploring each of the four pillars of
+object-oriented programming.
+
+I nheritance
+
+Inheritance in programming is similar to genetic inheritance. In genetic
+inheritance you can inherit attributes from your parents, like your eye color.
+Similarly w hen you create a class, it can inherit from another class (which is
+then called its parent class)—giving the new class you created the parent class’s
+variables and methods. In this section we will model a kid and adult using
+inheritance. First, we define a class to represent an adult:
+
+class Adult ():
+	def __init__ ( self , name , height , weight , eye_color):
+		self .name = name
+		self .height = height
+		self .weight = weight
+		self .eye_color = eye_color
+	def print_name ( self ):
+		print ( self .name)
+
+tom = Adult( "Tom" , 6 , 150 , "brown" )
+print (tom.name)
+print (tom.height)
+print (tom.weight)
+print (tom.eye_color)
+tom.print_name()
+>> Tom
+>> 6
+>> 150
+>> brown
+>> Tom
+
+Using this class we can create Adult objects with a name, height, weight and
+eye color. In addition, our Adult objects have a method called print_name that
+prints the parent’s name.
+We can model a human child that also has a name, height, weight, eye
+color and can print its name; with an extra method we don’t want our Adult
+objects to have called print_cartoon ; using inheritance. You inherit from a
+parent class by adding parenthesis to the class name you are defining, and
+passing in the class name you want to inherit from as a parameter. Here is an
+example:
+
+class Kid (Adult): // Passing an adult class to a Kid class
+	def print_cartoon ( self , favorite_cartoon):		
+		print ( "{}'s favorite cartoon is {}" .format( self .name ,
+favorite_cartoon))
+
+child = Kid( "Lauren" , 3 , 50 , "blue" )
+print (child.name)
+print (child.height)
+print (child.weight)
+print (child.eye_color)
+child.print_name()
+child.print_cartoon( 'DuckTales' )
+>> brown
+>> Ricky
+>> DuckTale s
+
+
+By passing in Adult to our Kid class, our Kid class inherits the variables and
+methods of our Adult class: when we create a Kid object we pass it a name,
+height, weight and eye color; and our Kid object is able to use the method
+print_name ; all of which was inherited from its parent class (without having to
+define any of it in our Kid class). This is important because not having to repeat
+code makes our program smaller and therefore more manageable.
+After inheriting from our Adult class, all we had to do was define a new
+method called print_cartoon in our Kid class to create a Kid class with all of
+the functionality of our Adult class, plus additional functionality; all without
+affecting our Adult class.
+
+Polymorphism
+
+The best definition I’ve found of polymorphism is “polymorphism is the
+ability (in programming) to present the same interface for differing underlying
+forms (data types) ”
+
+ An interface refers to one or more functions or methods.
+Let’s take a look at a situation where this is the case:
+print( 'Hello World' )
+print( 200 )
+print( 200.1 )
+>> “Hello World”
+>> 200
+>> 200.1
+In this example, we were able to present the same interface (the print function)
+for three different data types: a string, an int and a float. We didn’t need to call
+three separate functions— print_string , print_int , or print_float in order to print
+these three different data types—instead Python has just one interface for all of
+them.
+Let’s take a look at another example. Say we want to write a program that
+can draw different shapes: triangles, squares and circles. Each of these shapes is
+drawn in a different way, so the methods to draw them would all have different
+implementations. In Python, we can create different draw methods for each
+shape so that Triangle.draw() will draw a triangle, Square.draw() will draw a
+square, and Circle.draw() will draw a circle. Each of these shape objects has it’s
+own draw interface that knows how to draw itself. When we have a shape object,
+we know we can call the draw function to draw the shape. The same interface is
+presented for all the different shape data types.
+If Python did not support polymorphism— we would need a function that
+creates a triangle, and another function called draw_triangle to draw it; a
+function to create a circle, and a function called draw_circle to draw it; etc.
+Because Python has polymorphism, every shape can simply be drawn with its
+draw method. This makes our shape objects much easier to use and explain.
+Instead of explaining—we have three functions representing three different
+shapes, and another three functions that draws each of them; we can simply tell
+whoever is using the code: we have three shapes—if you want to draw one—call
+its draw method.
+
+Abstraction - a skeleton of a class that defines its functionality (drawing boundaries, etc).
+,an idea how it will function...
+
+
+We use abstraction in object-oriented programming when we create a class
+and define its methods. Say we create a class to represent a person. When we
+define our person class—and the methods that go with it— we are creating an
+abstraction. Our definition of a person could include eye color, hair color, height
+and ethnicity as well as the ability to read, write and draw. We could have a five
+foot three person with blue eyes, blonde hair unable to read, write or draw. Or
+we could have a six foot five person with brown eyes, brown hair that can read,
+write and draw. Both of these fall into the category of the person abstraction
+we’ve created.
+When we design object-oriented programs, we create abstractions of
+different concepts that all work together to form our program. For example, we
+may create an abstraction of a person, and an abstraction of a government, and
+model how many people live under each government in the world. Abstraction
+allows us to model objects with clear boundaries, and have them interact with
+each other.
+
+Encapsulation - the action of enclosing something in or as if in a capsule.
+
+In object-oriented programming, encapsulation hides our codes internal
+data. When code is encapsulated, it means when it is called, the caller cannot
+access the code's internal data. Take a look at the method get_data :
+
+class Data :
+	def get_data (self, index , n):
+		data = [ 1 , 2 , 3 , 4 , 5 ]
+		data.append(n)
+
+The method has a variable called data . When we call get_data , there is no way
+for us to access this variable because of encapsulation. If there was no
+encapsulation, we might be able to access the variable data —and append n to it
+—like this:
+
+# warning this code does not work
+Data.get_data.data.append(6)
+
+If this was allowed, anyone could access the data variable in our get_data
+method. Instead of relying on our implementation of the get_data method—
+they could append n to data themselves. This is not a problem—until we
+change the implementation of get_data . What if we decide want the variable
+data to be a tuple instead of a list? If we make this change, it will break
+anyone’s code calling append on the variable data , because tuples do not have
+an append method. But because of encapsulation, this scenario is not possible
+(which is why the code does not work), and we can be assured changes to the
+internal implementation of our code won’t break our client’s code (client is a
+term for the person using a piece of code).
+
+Composition - the nature of something's ingredients or constituents; the way in which a whole or mixture is made up.
+
+While composition is not one of the four pillars of object-oriented
+programming, it is an important concept related to the rest. Composition is used
+to represent “has a” relationships—it occurs when one object stores another
+object as a variable.For example, say we want to represent the relationship
+between a dog and its owner—this is a “has a” relationship—a dog has an
+owner. First we define our dog and people classes:
+
+
+class Dog ():
+	def __init__ ( self , name , breed , owner):
+		self .name = name
+		self .breed = breed
+		self .owner = owner
+
+class Person ():
+	def __init__ ( self , name):
+		self .name = name
+
+mick = Person( "Mick Jagger" )
+dog = Dog( "Stanley" , "French Bulldog" , mick)
+print (dog.owner)
+
+print (dog.owner)
+>> Mick Jagger
+
+Now our dog Stanley has an owner—a Person object named Mick Jagger—we
+can easily reference.
+
+How variables work:
+
+number = 100
+
+number points to an integer object with the value 100.
+
+number = 101
+
+When we assign a new value to number , it points to a new integer object with
+the value 101 , and the old integer object with a value of 100 is discarded
+because it is no longer being used. Two variables can point to the same object:
+
+x = 100
+y = x
+
+x points to an integer object with a value of 100 . When we assign y to x , y
+now points to the same integer object x points to: they both point to an integer
+object with a value of 100 .
+
+Keyword is: 
+
+class Person :
+	def __init__ ( self ):
+		self .name = 'Bob'
+		bob = Person()
+		the_same_bob = bob
+		print (bob is the_same_bob)
+		another_bob = Person()
+		print (bob is another_bob)
+>> True
+>> False
+
+When we use the keyword is with bob and the_same_bob , the result is True
+because both variables point to the same Person object. When we create a new
+Person object and compare it to the original bob the result is False because the
+variables point to different Person objects.
+
+None
+
+The built-in constant None is used to represent the absence of a value:
+x= None
+x
+>> None
+
+Usage examples:
+
+x = 10
+	if x:	
+		print ( "x is not None" )
+	else :
+		print ( "x is None :( " )
+>> x is not None
+	
+	x = None
+	
+	if x:
+		print ( "x is not None" )
+	else :
+		print ( "x is None :( " )
+
+>> x is None :
+
+
+Classes are objects
+
+In Python, classes are objects. This idea comes from the influential
+programming language SmallTalk. This means that when run a program in
+which you define a class—Python turns it into an object—which you can then
+use in your program:
+	
+	class Pterodactyl :
+		pass
+	print (Pterodactyl)
+
+>> <class '__main__.Pterodactyl'>
+
+Classes can have two types of variables—class variables and instance
+variables. All of the variables we’ve seen so far have been instance variables
+defined with the syntax self.[variable_name] = [variable_value] . Instance
+variables belong to the object that created them. In other words we can do this:
+
+class Liger :
+	def __init__ ( self , name):
+		self .name = name
+		connor = Liger( "Connor" )
+		print (connor.name)
+		>> Connor
+
+Class variables belong to both the class that created them and the object. That
+means we can access them with the class object Python creates for each class:
+
+class Liger :
+	interests = [ "swimming" , "eating" , "sleeping" ]
+	def __init__ ( self , name):
+		self .name = name
+		print (Liger.interests)
+
+>> ['swimming', 'eating', 'sleeping']
+
+In this example we never created a Liger object, yet we were able to access the interests class variable.
+This is because class variables can be accessed by the class that created them. Class variables can also be
+accessed by the object:
+
+class Liger :
+	interests = [ "swimming" , "eating" , "sleeping" ]
+	def __init__ ( self , name):
+		self .name = name
+
+larry = Liger( "Larry" )
+print (larry.interests)
+
+>> ['swimming', 'eating', 'sleeping']
+
+Class variables are useful when you want every object in a class to have access
+to a variable. In this case the name of each Liger can be unique, but all of our
+Ligers to have access to the same list of interests.
+
+Private variables
+
+One situation private variables and methods are useful in is if you have
+method or variable in your class the class uses internally, but you plan to change
+the implementation of your code later on (or you want to preserve the flexibility
+to have the option to), and therefore don’t want whoever is using the class to rely
+on those variables and methods used internally because they might change (and
+would then break their code).
+Unlike other languages Python does not have private variables. Variables
+that are not private are called public variables, and all of Python’s variables are
+public. Python solves the problem private variables resolve another way—by
+using convention. In Python, if you have a variable or method the caller should
+not access, you precede its name with an underscore. Python programmers know
+if a method or variable has an underscore, they shouldn’t use it, although they
+are still able to at their own risk. Here is an example of a class that uses this
+convention:
+
+class PublicPrivateExample:
+	def __init__ ( self ):
+		self .public_variable = "callers know they can access this"
+		self ._dontusethisvariable = "callers know they shouldn't access this"
+	def public_method( self ):
+	# callers know they can use this method
+		pas
+	def _dont_use_this_method( self ):
+	# callers know they shouldn't use this method
+		pass
+
+
+Overriding Methods
+When a class inherits a method from a parent, we have the ability to
+override it. Take a look at the following example:
+
+class Mammal :
+
+	def __init__ ( self , name):
+		self .hunger = 100
+		self .tired = 100
+		self .name = name
+
+	def print_result ( self , amount , action):
+		print ( "{} {} decreased by {}." .format( self .name , action ,
+amount))
+
+	def eat ( self , decrease):
+		self .hunger -= decrease
+		self .print_result(decrease , 'hunger' )
+	
+	def sleep ( self , decrease):
+		self .tired -= decrease
+		self .print_result(decrease , 'tiredness' )
+
+class Dolphin (Mammal):
+	pass
+
+class Tiger (Mammal):
+	def sleep ( self , decrease):
+		self .tired -= decrease
+		print ( "The tiger is really tired!" )
+	
+dolphin = Dolphin( 'dolphin' )
+dolphin.eat( 10 )
+dolphin.sleep( 10 )
+
+tiger = Tiger( 'tiger' )
+tiger.eat( 10 )
+tiger.sleep( 10 )
+
+> > dolphin hunger decreased by 10.
+>> dolphin tiredness decreased by 10.
+>> tiger hunger decreased by 10.
+>> The tiger is really tired!
+
+We created two classes that inherit from Mammal . The first class, Dolphin ,
+inherits all of its functionality from the Mammal parent class without making
+any changes. The second class Tiger defines a method called sleep , with
+different functionality than the sleep method it inherited from its parent class.
+When we call tiger.sleep , the new method we defined gets called instead of the
+inherited method. Other than this, Tiger and Dolphin have all the same
+functionality inherited from the parent class Mammal.
+
+Super
+
+The built-in super function, lets us call a method a class inherited from its
+parent. The super function is used with the syntax super().[parent_method]
+([parameters]) where you replace parent_method with the parent method you
+want to call and pass it any parameters it needs. The parent method is then called
+and executed, and the rest of the code in the method super was called from then
+finishes executing. Here is an example of how we can call the Mammal parent
+class's sleep method from our Tiger classes’sleep method, in order to use the
+code from the Mammal class’s sleep method followed by additional
+functionality:
+
+class Tiger (Mammal):
+	def sleep ( self , decrease):
+		super ().sleep(decrease)
+		print ( "The tiger is really tired!" )
+
+tiger = Tiger( 'tiger' )
+	tiger.eat( 10 )
+	tiger.sleep( 10 )
+>> tiger tiredness decreased by 10.
+>> The tiger is really tired!
+
+By using the super keyword we
+were able to give a child class the functionality from a parent class’s method
+without having to retype the functionality in the child class. This is important
+because you should always avoid repeating code with the same functionality in
+different places in your program when you can.
+
+Overriding Built-in Methods
+
+class Lion :
+	def __init__ ( self , name):
+		self .name = name
+
+lion = Lion( "Dilbert" )
+print (lion)
+
+>> <__main__.Lion object at 0x101178828 >
+When we print our Lion object, Python calls the __repr__ method on our
+object, which it inherited from the Object parent class. It prints whatever the
+__repr__ method returns. We can override this built-in method to change what
+happens when the print function prints our object.:
+
+class Lion:
+	def __init__ ( self , name):
+		self .name = name
+	
+	def __repr__ ( self ):
+		return self .name
+
+lion = Lion( "Dilbert" )
+print (lion)
+>> Dilbert
+
+Because we overrode the __repr__ method, when we print our Lion object, the
+Lion object’s name— Dilbert — gets printed instead of something like
+<__main__.Lion object at 0x101178828 > which the inherited __repr__ method would have returned.
+
