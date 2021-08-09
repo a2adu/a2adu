@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, createRef } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import axios from 'axios';
 import logo from "./logo.svg";
 import "./App.css";
@@ -36,30 +36,38 @@ function App() {
       Axios post,get,delete,fetch,etc...
       *****************************************
   */}
+  {/* 
+      !!!   Watch how to insert with FormData     !!!
+
+    var histo = new FormData();
+    histo.append('id_booking', this.last_id);
+    histo.append('name', this.name);
+    histo.append('email', this.email);
+    axios.all([
+     axios.post("domain.com/api/v1/booking").then(response => (this.last_id = response.data['last_id'])),
+  */}
+  const getLastId = () => { 
+    axios.get('http://localhost:3001/newsletters/').then( (response) => {
+ 
+        const lastId = JSON.stringify(response.data[response.data.length-1].id);
+ 
+        return lastId;
+   });
+  }
   
-
-
-  const AddSubscription = (num) => {
-    {/*
-    
-      ********* Test this later ******************
-      
-    bodyFormData.append('image', ImageFile); might append an image file too
-    let bodyFormData = new FormData();
-    bodyFormData.append({id}, 'aivarasa2@gmail.com');
-
-     axios({
-    data: bodyFormData, }
-
-    */}
-    
+  const AddSubscription = (userEmail) => {
     axios({
         method: "post",
-        url: "http://localhost:3001/tasks/",
-        id: num,
-        email: 'freddyb34@gmail.com',
-        isSet: true 
-
+        url: "http://localhost:3001/newsletters/",
+        data:{
+          id: getLastId()+1,
+          email: userEmail,
+          isSet: true 
+        },
+        headers: {
+          // Overwrite Axios's automatically set Content-Type
+          'Content-Type': 'application/json'
+        }
       }).then(function (response) {
           //handle success
             console.log(response);
@@ -72,7 +80,7 @@ function App() {
   const DeleteSubscription = (id) => {
     axios({
       method: "delete",
-      url: "http://localhost:3001/tasks/${id}"
+      url: "http://localhost:3001/newsletters/${id}"
     }).then(function (response) {
         //handle success
           console.log(response);
@@ -83,17 +91,17 @@ function App() {
   }
 
   const FetchSubscription = (id) => { 
-    axios.get('http://localhost:3001/tasks/${id}').then( (response) => {
+    axios.get('http://localhost:3001/newsletters/${id}').then( (response) => {
         console.log(response); 
         const subData = response.data; 
         return subData;
     });
   }
-
+  {/* Getting data from db */}
   const [getSub, setSubscriptions] = useState([]);
 
   const FetchSubscriptions = () => { 
-    axios.get('http://localhost:3001/tasks/').then( (response) => {
+    axios.get('http://localhost:3001/newsletters/').then( (response) => {
         console.log(response); 
         const subData = response.data; 
         setSubscriptions(subData);
@@ -101,7 +109,12 @@ function App() {
   }
   
   useEffect(() => FetchSubscriptions(), [])
-  let textInput = createRef();
+  
+  {/* Adding functionality to Add button */}
+  const [getNewsletterValue, setNewsletterValue] = useState(null);
+  function HandleChange(event) {
+    setNewsletterValue(event.target.value);
+  };
 
   return (
     <div className="App">
@@ -120,8 +133,14 @@ function App() {
                 {/* console.log(FetchSubscriptions()) */ }
                 <div className="test" style={{backgroundColor: 'red', width: '200px', height: '300px'}}>
                 {/* createRef being used to get value */}
-                <input type="text" value="false" ref={textInput}/>
-                { AddSubscription(3) }
+                {/*<input type="text" value="17" ref={textInput}/>*/}
+                <input
+           className="searchbar"
+           type="text"
+           placeholder="Type an interest ..."
+           value={getNewsletterValue}
+           onChange={HandleChange}
+           />
                 </div>
                 {
                   getSub.map((newsletter) => (
@@ -134,7 +153,7 @@ function App() {
 
                   ) }
                   {/* Getting ef input value */}
-                  <Button variant="outlined" onClick={() => { AddSubscription(textInput.current.value);}} >Add Value</Button>
+                  <Button variant="outlined" onClick={() => { AddSubscription(getNewsletterValue) }} >Add Value</Button>
               </div>
             </p>
         </div>
