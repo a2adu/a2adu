@@ -1,9 +1,13 @@
 import React from 'react'
+import GNewsletterButtons from './googleBtns/GNewsletterButtons.js'
+
 
 const Newsletter = () =>{
+	{/* CSS variables, inline style */}
 	const displayNone = {
 		display: "None"
 	};
+
 	const mystyle = {
       		color: "white",
      		backgroundColor: "DodgerBlue",
@@ -22,29 +26,28 @@ const Newsletter = () =>{
 								   <p>Sužinokite naujausią Užimtumo tarnybos informaciją&nbsp;apie situaciją šalies darbo rinkoje, paslaugas, projektus ir renginius.</p>
 								   <p>Jūsų pateikti duomenys bus tvarkomi ir saugomi vadovaujantis įstatymais.</p>
 								</div>
-								<form className="ml-block-form" action="https://app.mailerlite.com/webforms/submit/k7u2u4" data-code="k7u2u4" method="post" target="_blank">
-								   <div className="ml-form-formContent">
-										<div className="ml-form-fieldRow ml-last-item">
-											<div className="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-												<input type="email" className="form-control" data-inputmask="" name="fields[email]" value="" placeholder="Jūsų el. pašto adresas" aria-invalid="false"/>
-											</div>
-										</div>
-								   </div>
+								
 								   
-								   <input type="hidden" name="ml-submit" value="1" aria-invalid="false"/>
-								   
-								   <div className="ml-form-embedSubmit">
-										<button type="submit" className="primary">Prenumeruoti</button>
-										<button disabled="disabled" style={displayNone} type="button" className="loading">
+								{/* Material-UI TextButtons function being used:    
+								export default function TextButtons() {
+  							        	const classes = useStyles();
+								          <input type="hidden" name="ml-submit" value="1" aria-invalid="false"/>
+
+									   <div className={classes.root}>
+										return (
+										<Button type="submit" className="primary" variant="outlined">Prenumeruoti</Button>
+										<Button disabled="disabled" style={displayNone} type="button" className="loading">
 											<div className="ml-form-embedSubmitLoad">
 												<div>&nbsp;</div>
 												<div>&nbsp;</div>
 												<div>&nbsp;</div>
 												<div>&nbsp;</div>
 											</div>
-										</button>
-								   </div>
-								</form>
+										</Button>
+								   	   </div>);
+								} {/* End of Material-UI function */}
+								<GNewsletterButtons/>
+							 
 							 </div>
 							 <div class="ml-form-successBody row-success" style={displayNone}>
 									<div class="ml-form-successContent">

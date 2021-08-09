@@ -1,0 +1,4 @@
+{
+	"watch": ["/**","components/"],
+	"ext": "js, css"
+}

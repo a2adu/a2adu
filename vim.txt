@@ -1,0 +1,70 @@
+VIM usage:
+
+
+vim replace text occurencies in current file:
+
+:%s/class/className/g)
+
+to select all occurencies and replace them in a directory:
+
+:vimgrep /class/gj **/*  -- class is the name to select
+
+after the selection, u can chage all the selected occurencies:
+
+cd ~/Desktop/Projects/a2adu/src/components
+
+next, change those occurencies:
+
+:cfdo %s/Sam/Bob/gc
+
+then, :cfdo update
+
+____________________________________________
+
+To indent text using Visual Mode:
+
+press V
+
+press jj
+
+select lines to indent:
+
+press > or < to indent the text to right or to left side
+
+________________________________________________________
+
+To set lines:
+
+set nu:
+
+________________________________________________________
+
+To copy to clipboard from Visual:
+
+press v select text, then : 
+
+!xclip -i -sel c or xsel -i -b
+
+____________________________________________________________
+
+Changing line in a file using sed:
+
+
+sed -i 's/html-formatter.htm/html-formatter.html/g' freeformatter.com 
+
+_________________________________________________________
+
+Moving a line in a document using cmd:
+
+:m 12 	move current line to after line 12
+:m 0 	move current line to before first line
+:m $ 	move current line to after last line
+:m 'a 	move current line to after line with mark a (see using marks)
+:m 'a-1 	move current line to before line with mark a
+:m '}-1 	move current line to the end of the current paragraph 
+
+_____________________________________________________________________
+
+To get to a certain line of a code just simply type:
+
+:line number, e.g.: :22 

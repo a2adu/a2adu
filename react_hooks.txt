@@ -1,0 +1,368 @@
+Use of reactHooks:
+
+
+1) useState - will allow you to manage the local state of your component. The useState hook lets you add state to function components. 
+
+Example: Show/Hide a Component (useState with a boolean):
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+
+// This component expects 2 props:
+//   text - the text to display
+//   maxLength - how many characters to show before "read more"
+function LessText({ text, maxLength }) {
+  // Create a piece of state, and initialize it to `true`
+  // `hidden` will hold the current value of the state,
+  // and `setHidden` will let us change it
+  const [hidden, setHidden] = useState(true);
+
+  // If the text is short enough, just render it
+  if (text.length <= maxLength) {
+    return <span>{text}</span>;
+  }
+
+  // Render the text (shortened or full-length) followed by
+  // a link to expand/collapse it.
+  // When a link is clicked, update the value of `hidden`,
+  // which will trigger a re-render
+  return (
+    <span>
+      {hidden ? `${text.substr(0, maxLength).trim()} ...` : text}
+      {hidden ? (
+        <a onClick={() => setHidden(false)}> read more</a>
+      ) : (
+        <a onClick={() => setHidden(true)}> read less</a>
+      )}
+    </span>
+  );
+}
+
+Example: multiple calls to useState:
+
+function LoginForm() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const printValues = e => {
+    e.preventDefault();
+    console.log(username, password);
+  };
+
+  return (
+    <form onSubmit={printValues}>
+      <label>
+        Username:
+        <input
+          value={username}
+          onChange={event => setUsername(event.target.value)}
+          name="username"
+          type="text"
+        />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input
+          value={password}
+          onChange={event => setPassword(event.target.value)}
+          name="password"
+          type="password"
+        />
+      </label>
+      <br />
+      <button>Submit</button>
+    </form>
+  );
+}
+
+ReactDOM.render(
+  <LessText
+    text={`Focused, hard work is the real key
+      to success. Keep your eyes on the goal, 
+      and just keep taking the next step 
+      towards completing it.`}
+    maxLength={35}
+  />,
+  document.querySelector('#root')
+);
+
+
+2) useEffect - is a very powerful hook that allows you to handle different lifecycles of the app such as (componentDidMount, componentWillUnmount, shouldComponentUpdate, etc.):
+The useEffect hook is the Swiss Army knife of all the hooks. It’s the solution to many problems: how to fetch data when a component mounts, how to run code when state changes or when a prop changes, how to set up timers or intervals, you name it.
+Pretty much anything you want to “do” in a React component other than return JSX (any sort of side effect), will go into a useEffect. (and you can have more than one useEffect per component, too)
+All this power comes with a tradeoff: useEffect can be confusing until you understand how it works. 
+Example of componentDidMount, componentDidUpdate, componentWillUnmount:
+
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+
+function LifecycleDemo() {
+  // Pass useEffect a function
+  useEffect(() => {
+    // This gets called after every render, by default
+    // (the first one, and every one after that)
+    console.log('render!');
+
+    // If you want to implement componentWillUnmount,
+    // return a function from here, and React will call
+    // it prior to unmounting.
+    return () => console.log('unmounting...');
+  })
+
+  return "I'm a lifecycle demo";
+}
+
+function App() {
+  // Set up a piece of state, so that we have
+  // a way to trigger a re-render.
+  const [random, setRandom] = useState(Math.random());
+
+  // Set up another piece of state to keep track of
+  // whether the LifecycleDemo is shown or hidden
+  const [mounted, setMounted] = useState(true);
+
+  // This function will change the random number,
+  // and trigger a re-render (in the console,
+  // you'll see a "render!" from LifecycleDemo)
+  const reRender = () => setRandom(Math.random());
+
+  // This function will unmount and re-mount the
+  // LifecycleDemo, so you can see its cleanup function
+  // being called.
+  const toggle = () => setMounted(!mounted);
+
+  return (
+    <>
+      <button onClick={reRender}>Re-render</button>
+      <button onClick={toggle}>Show/Hide LifecycleDemo</button>
+      {mounted && <LifecycleDemo/>}
+    </>
+  );
+}
+
+ReactDOM.render(<App/>, document.querySelector('#root'));
+
+Only Run Once, on Mount
+
+You can pass the special value of empty array [] as a way of saying “only run on mount, and clean up on unmount”. So if we changed our component above to call useEffect like this:
+
+useEffect(() => {
+  console.log('mounted');
+  return () => console.log('unmounting...');
+}, [])  // <-- add this empty array here
+
+Run useEffect on state change:
+
+function ThreeCounts() {
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const [count3, setCount3] = useState(0);
+
+  useEffect(() => {
+    console.log("count2 changed!");
+  }, [count2]);
+
+  return (
+    <div>
+      {count1} {count2} {count3}
+      <br />
+      <button onClick={() => setCount1(count1 + 1)}>Increment count1</button>
+      <button onClick={() => setCount2(count2 + 1)}>Increment count2</button>
+      <button onClick={() => setCount3(count3 + 1)}>Increment count3</button>
+    </div>
+  );
+}
+
+Use useEffect on prop change:
+function PropChangeWatch({ a, b }) {
+  useEffect(() => {
+    console.log("value of 'a' changed to", a);
+  }, [a]);
+
+  return (
+    <div>
+      I've got 2 props: a={a} and b={b}
+    </div>
+  );
+}
+
+function Demo() {
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+
+  return (
+    <div>
+      <PropChangeWatch a={count1} b={count2} />
+      <button onClick={() => setCount1(count1 + 1)}>Increment count1</button>
+      <button onClick={() => setCount2(count2 + 1)}>Increment count2</button>
+    </div>
+  );
+}
+
+Fetch data using useEffect:
+
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+
+function Reddit() {
+  // Initialize state to hold the posts
+  const [posts, setPosts] = useState([]);
+
+  // effect functions can't be async, so declare the
+  // async function inside the effect, then call it
+  useEffect(() => {
+    async function fetchData() {
+      // Call fetch as usual
+      const res = await fetch(
+        "https://www.reddit.com/r/reactjs.json"
+      );
+
+      // Pull out the data as usual
+      const json = await res.json();
+
+      // Save the posts into state
+      // (look at the Network tab to see why the path is like this)
+      setPosts(json.data.children.map(c => c.data));
+    }
+
+    fetchData();
+  }); // <-- we didn't pass a value. what do you think will happen?
+
+  // Render as usual
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+ReactDOM.render(
+  <Reddit />,
+  document.querySelector("#root")
+);
+
+3) useContext - will help you to interact with the contexts. Context can make a nice simple alternative to Redux when your data is simple or your app is small:
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+// Create a Context
+const NumberContext = React.createContext();
+// It returns an object with 2 values:
+// { Provider, Consumer }
+
+function App() {
+  // Use the Provider to make a value available to all
+  // children and grandchildren
+  return (
+    <NumberContext.Provider value={42}>
+      <div>
+        <Display />
+      </div>
+    </NumberContext.Provider>
+  );
+}
+
+function Display() {
+  // Use the Consumer to grab the value from context
+  // Notice this component didn't get any props!
+  return (
+    <NumberContext.Consumer>
+      {value => <div>The answer is {value}.</div>}
+    </NumberContext.Consumer>
+  );
+}
+
+ReactDOM.render(<App />, document.querySelector("#root"));
+
+We can use context without a Consumer:
+
+// import useContext (or we could write React.useContext)
+import React, { useContext } from 'react';
+
+// ...
+
+function Display() {
+  const value = useContext(NumberContext);
+  return <div>The answer is {value}.</div>;
+}
+
+5) useReducer - will allow you to work with your store on the Containers level. A “reducer” is a fancy word for a function that takes 2 values and returns 1 value. 
+
+In javascript if you would like to combine things into a single value, you might use function .reduce, example using it on an array:
+
+let numbers = [1, 2, 3];
+let sum = numbers.reduce((total, number) => {
+  return total + number;
+}, 0);
+
+We might rewrite it in react:
+
+useReducer((state, action) => {
+  return state + action;
+}, 0);
+
+Complete example of useReducer to increment a value:
+
+import React, { useReducer } from 'react';
+
+function Counter() {
+  // First render will create the state, and it will
+  // persist through future renders
+  const [sum, dispatch] = useReducer((state, action) => {
+    return state + action;
+  }, 0);
+
+  return (
+    <>
+      {sum}
+
+      <button onClick={() => dispatch(1)}>
+        Add 1
+      </button>
+    </>
+  );
+}
+
+6) Usage of useRef and usReducer to remove element from an array:
+
+function ShoppingList() {
+  const inputRef = useRef();
+  const [items, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case 'add':
+        // ... same as before ...
+      case 'remove':
+        // keep every item except the one we want to remove
+        return state.filter((_, index) => index != action.index);
+      default:
+        return state;
+    }
+  }, []);
+
+  function handleSubmit(e) { /*...*/ }
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input ref={inputRef} />
+      </form>
+      <ul>
+        {items.map((item, index) => (
+          <li key={item.id}>
+            {item.name}
+            <button
+              onClick={() => dispatch({ type: 'remove', index })}
+            >
+              X
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+

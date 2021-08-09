@@ -1,7 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap'
 
 const Footer = () =>{
-return (
+	const useStyles = makeStyles((theme) => ({
+		root: {
+		  '& > * + *': {
+			marginLeft: theme.spacing(2),
+		  },
+		},
+	  }));
+	  
+	const classes = useStyles();
+
+	return (
 	<div className="elementor-container elementor-column-gap-default">
 	<div className="elementor-element elementor-element-1e64df3 elementor-column elementor-col-20 elementor-inner-column" data-id="1e64df3" data-element_type="column">
 	   <div className="elementor-column-wrap  elementor-element-populated">
@@ -13,42 +28,43 @@ return (
 				</div>
 		 <div className="elementor-element elementor-element-6c7f8db elementor-align-left elementor-icon-list--layout-traditional elementor-widget elementor-widget-icon-list" data-id="6c7f8db" data-element_type="widget" data-widget_type="icon-list.default">
 		    <div className="elementor-widget-container">
-		       <ul className="elementor-icon-list-items">
-		          <li className="elementor-icon-list-item">
-		             <a href="https://uzt.lt/struktura-ir-kontaktai-2/vadovas/">					<span className="elementor-icon-list-text">Vadovas</span>
-		             </a>
-		          </li>
-		          <li className="elementor-icon-list-item">
-		             <a href="https://uzt.lt/struktura-ir-kontaktai/vadovo-darbotvarke-2/">						<span className="elementor-icon-list-icon">
-		             <i aria-hidden="true" className="fas fa-check"></i>						</span>
-		             <span className="elementor-icon-list-text">Vadovo darbotvarkė</span>
-		             </a>
-		          </li>
-		          <li className="elementor-icon-list-item">
-		             <a href="https://uzt.lt/struktura-ir-kontaktai-2/struktura/">					<span className="elementor-icon-list-text">Struktūra</span>
-		             </a>
-		          </li>
-		          <li className="elementor-icon-list-item">
-		             <a href="https://uzt.lt/struktura-ir-kontaktai-2/kontaktai/">					<span className="elementor-icon-list-text">Kontaktai</span>
-		             </a>
-		          </li>
-		          <li className="elementor-icon-list-item">
-		             <a href="https://uzt.lt/veiklos-uzduotys/">					<span className="elementor-icon-list-text">Veiklos užduotys</span>
-		             </a>
-		          </li>
-		          <li className="elementor-icon-list-item">
-		             <a href="https://uzt.lt/struktura-ir-kontaktai/tarybos_komisijos_darbogrupes/">						<span className="elementor-icon-list-icon">
-		             <i aria-hidden="true" className="fas fa-check"></i>						</span>
-		             <span className="elementor-icon-list-text">Tarybos, komisijos ir darbo grupės</span>
-		             </a>
-		          </li>
-		          <li className="elementor-icon-list-item">
-		             <a href="https://uzt.lt/apie">						<span className="elementor-icon-list-icon">
-		             <i aria-hidden="true" className="fas fa-check"></i>						</span>
-		             <span className="elementor-icon-list-text">Apie Užimtumo tarnybą</span>
-		             </a>
-		          </li>
-		       </ul>
+			 
+			<Typography className={classes.root}>
+			<Link display="block" href="https://uzt.lt/struktura-ir-kontaktai-2/vadovas/" > 	
+			Link1 				 
+		             </Link>
+		      
+		   
+		             <Link display="block" href="https://uzt.lt/struktura-ir-kontaktai/vadovo-darbotvarke-2/">						 
+		      			Link2 
+ 
+		             </Link >
+ 
+		             <Link display="block" href="https://uzt.lt/struktura-ir-kontaktai-2/struktura/">	
+					 Link3 				 
+		             </Link >
+		       
+		 
+		             <Link display="block"  href="https://uzt.lt/struktura-ir-kontaktai-2/kontaktai/">	
+					 Link4 				  
+		             </Link >
+		     
+	 
+		             <Link display="block" href="https://uzt.lt/veiklos-uzduotys/">	
+					 Link5				 
+		             </Link >
+		 
+	 
+		             <Link display="block" href="https://uzt.lt/struktura-ir-kontaktai/tarybos_komisijos_darbogrupes/">						 
+					 Link6
+		             </Link >
+		   
+		   
+		             <Link display="block" href="https://uzt.lt/apie">				 
+		    Link7
+		             </Link >
+		        
+			   </Typography>
 		    </div>
 		 </div>
 		 <div className="elementor-element elementor-element-bf2c3ba elementor-widget elementor-widget-image" data-id="bf2c3ba" data-element_type="widget" data-widget_type="image.default">

@@ -1,0 +1,102 @@
+Tools:
+
+js-beautify - makes code [js] more beautiful, usage:  js-beautify *.js, works only on javascript lines.
+
+$ npm install js-beautify
+
+tidy - for html and css code fixing, works only on html.
+
+sudo apt install tidy
+
+or:
+
+npm install -g node-libtidy
+
+Prettier - works with JSX syntax on REACT env.
+
+npm install --save-dev --save-exact prettier
+
+Usage: [
+
+Then, create an empty config file to let editors and other tools know you are using Prettier:
+
+	echo {}> .prettierrc.json
+
+Next, create a .prettierignore file to let the Prettier CLI and editors know which files to not format. Here’s an example:
+
+# Ignore artifacts:
+build
+coverage
+
+format all files with Prettier:
+
+npx prettier -write
+
+If you use ESLint, install eslint-config-prettier to make ESLint and Prettier play nice with each other. 
+It turns off all ESLint rules that are unnecessary or might conflict with Prettier. There’s a similar config for Stylelint: stylelint-config-prettier
+
+]
+
+Other tools:
+
+npm install jquery, then we might use jquery at our projects just like so usin $:
+
+	 $(function() {
+
+                  setTimeout(function() {
+
+                    ReactDOM.render(React.createElement(MyjQueryReactComponent, { context: PubSubHelper }), document.getElementById('root'));
+
+                  }, 0);
+
+                  // Change the element bgcolor every 2 seconds.
+
+                  setInterval(function() {
+
+                    var elm = $('#elm');
+
+                    var bgColor = elm.css('background-color') === 'rgb(255, 255, 0)' ? 'red' : 'green';
+
+                    // Change element color
+
+                    elm.css('background-color', bgColor);
+
+                    // Inform subscribers.
+
+                    PubSubHelper.bgColor(bgColor);
+
+                  }, 2000)
+
+                });
+
+Tips:
+
+Importing images :
+
+You can put the image file in the public folder (or if this is not Create React App… then any folder that will be copied to the server).
+
+Then, assuming your server is treating the public folder as the “root” directory (/), 
+
+then your images will be available relative to that – just like with plain HTML.
+/public/images:
+function Home() {
+  return (
+    <div>
+      <img src="images/logo.jpg" alt="BigCo Inc. logo"/>
+    </div>
+  );
+}
+
+if your folder isn't at public/images/ then:
+
+/src/images:
+import companyLogo from './path/to/logo.jpg';
+
+function Home() {
+  return (
+    <div>
+      <img src={companyLogo} alt="BigCo Inc. logo"/>
+    </div>
+  );
+}
+
