@@ -29,21 +29,14 @@
       "isSet": "True"
     },
     {
-      "id": {
-        "id": 3
-      },
-      "email": "a2@gmail.com",
-      "isSet": "True"
-    },
-    {
-      "id": "{$id}",
-      "email": "a2@gmail.com",
-      "isSet": "True"
-    },
-    {
       "id": 5,
-      "email": "a2@gmail.com",
-      "isSet": "True"
+      "email": "aivaras.adukauskas@gmail.com",
+      "isSet": false
+    },
+    {
+      "id": 6,
+      "email": "a2@gg.com",
+      "isSet": false
     }
   ]
 }
