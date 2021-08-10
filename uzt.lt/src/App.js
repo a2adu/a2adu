@@ -43,6 +43,7 @@ function App() {
     histo.append('id_booking', this.last_id);
     histo.append('name', this.name);
     histo.append('email', this.email);
+
     axios.all([
      axios.post("domain.com/api/v1/booking").then(response => (this.last_id = response.data['last_id'])),
   */}
@@ -135,25 +136,24 @@ function App() {
                 {/* createRef being used to get value */}
                 {/*<input type="text" value="17" ref={textInput}/>*/}
                 <input
-           className="searchbar"
-           type="text"
-           placeholder="Type an interest ..."
-           value={getNewsletterValue}
-           onChange={HandleChange}
-           />
-                </div>
+                className="searchbar"
+                type="text"
+                placeholder="Type an interest ..."
+                value={getNewsletterValue}
+                onChange={HandleChange}/>
+              </div>
                 {
                   getSub.map((newsletter) => (
-                    <List key={newsletter.id}>
+                  <List key={newsletter.id}>
                         <ListItem alignItems="flex-start">
                           <ListItemText primary={newsletter.id} secondary={newsletter.email} lole={newsletter.isSet}/>
                         </ListItem>
-                    </List>
-                  )
-
-                  ) }
-                  {/* Getting ef input value */}
-                  <Button variant="outlined" onClick={() => { AddSubscription(getNewsletterValue) }} >Add Value</Button>
+                  </List>)
+                  ) 
+                }
+                  
+                {/* Getting ef input value */}
+                <Button variant="outlined" onClick={() => { AddSubscription(getNewsletterValue) }} >Add Value</Button>
               </div>
             </p>
         </div>
