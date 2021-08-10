@@ -48,51 +48,86 @@ function App() {
      axios.post("domain.com/api/v1/booking").then(response => (this.last_id = response.data['last_id'])),
   */}
   const getLastId = () => { 
-    axios.get('http://localhost:3001/newsletters/').then( (response) => {
- 
+    axios.get('http://localhost:3001/newsletters/')
+    .then((response) => {
         const lastId = JSON.stringify(response.data[response.data.length-1].id);
- 
         return lastId;
    });
   }
-  
+
   const AddSubscription = (userEmail) => {
-    axios({
-        method: "post",
-        url: "http://localhost:3001/newsletters/",
-        data:{
-          id: getLastId()+1,
-          email: userEmail,
-          isSet: true 
-        },
+    axios.post('http://localhost:3001/newsletters/', {
+      id: getLastId()+1,
+      email: userEmail,
+      isSet: true,
         headers: {
-          // Overwrite Axios's automatically set Content-Type
-          'Content-Type': 'application/json'
+        // Overwrite Axios's automatically set Content-Type
+        'Content-Type': 'application/json'
         }
-      }).then(function (response) {
-          //handle success
-            console.log(response);
-      }).catch(function (response) {
-          //handle error
-          console.log(response);
-     });
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
-  const DeleteSubscription = (id) => {
-    axios({
-      method: "delete",
-      url: "http://localhost:3001/newsletters/${id}"
-    }).then(function (response) {
+  const getIDviaEmail = (setEmail) => { 
+    const [getResponse, setResponse] = useState([]);
+
+    useEffect(() => {
+    axios.get('http://localhost:3001/newsletters/', {
+      params: {
+        email: setEmail
+      }
+    })
+    .then((response) => {
+      //const emailID = response.data[0].id;
+      let id = response.data[0].id;
+      setResponse(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  },[])
+
+  return <div><ul>{
+        getResponse.map(post => <li key={getResponse.id}>{getResponse.id}</li>)
+    }
+    </ul></div>
+  }
+ 
+
+  const DeleteSubscription = (setIDEmail) => {
+    let abc = getIDviaEmail('aivaras.adukauskas@gmail.com');
+    
+    const getResult = (abc)=>{
+      abc.getPromise()
+          .then(function(response) {
+              console.log("response:" +response)
+              return response;
+          })
+    }    
+    getResult(abc);
+ 
+    axios.delete("http://localhost:3001/newsletters/",{
+      params:{
+        id: 2
+      }
+    })
+    .then((response) => {
         //handle success
-          console.log(response);
-    }).catch(function (response) {
+        console.log(response);
+    }).catch((response) => {
         //handle error
         console.log(response);
     });
   }
 
   const FetchSubscription = (id) => { 
-    axios.get('http://localhost:3001/newsletters/${id}').then( (response) => {
+    axios.get('http://localhost:3001/newsletters/${id}')
+    .then((response) => {
         console.log(response); 
         const subData = response.data; 
         return subData;
@@ -102,7 +137,8 @@ function App() {
   const [getSub, setSubscriptions] = useState([]);
 
   const FetchSubscriptions = () => { 
-    axios.get('http://localhost:3001/newsletters/').then( (response) => {
+    axios.get('http://localhost:3001/newsletters/')
+    .then((response) => {
         console.log(response); 
         const subData = response.data; 
         setSubscriptions(subData);
@@ -112,9 +148,19 @@ function App() {
   useEffect(() => FetchSubscriptions(), [])
   
   {/* Adding functionality to Add button */}
+  
   const [getNewsletterValue, setNewsletterValue] = useState(null);
+  
   function HandleChange(event) {
     setNewsletterValue(event.target.value);
+  };
+
+  {/* Adding functionality to Add button */}
+
+  const [getDeleteValue, setDeleteValue] = useState(null);
+ 
+  function HandleDelete(event) {
+    setDeleteValue(event.target.value);
   };
 
   return (
@@ -136,11 +182,18 @@ function App() {
                 {/* createRef being used to get value */}
                 {/*<input type="text" value="17" ref={textInput}/>*/}
                 <input
-                className="searchbar"
+                className="AddBar"
                 type="text"
-                placeholder="Type an interest ..."
+                placeholder="Type in your email"
                 value={getNewsletterValue}
                 onChange={HandleChange}/>
+
+                <input
+                className="DeleteBar"
+                type="text"
+                placeholder="Type in your email"
+                value={getDeleteValue}
+                onChange={HandleDelete}/>
               </div>
                 {
                   getSub.map((newsletter) => (
@@ -154,6 +207,7 @@ function App() {
                   
                 {/* Getting ef input value */}
                 <Button variant="outlined" onClick={() => { AddSubscription(getNewsletterValue) }} >Add Value</Button>
+                <Button variant="outlined" onClick={() => { DeleteSubscription(getDeleteValue) }} >Remove Value</Button>  
               </div>
             </p>
         </div>

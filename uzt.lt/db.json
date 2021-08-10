@@ -9,11 +9,6 @@
   ],
   "Newsletters": [
     {
-      "id": 1,
-      "email": "abc@gmail.com",
-      "isSet": true
-    },
-    {
       "id": 2,
       "email": "abcd@gmail.com",
       "isSet": true
@@ -37,6 +32,27 @@
       "id": 6,
       "email": "a2@gg.com",
       "isSet": false
+    },
+    {
+      "id": 7,
+      "email": "Abcd@gmail.com",
+      "isSet": true
+    },
+    {
+      "id": 8,
+      "email": "lolas@gg.com",
+      "isSet": true,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "id": 9,
+      "email": "lolas@gmail.com",
+      "isSet": true,
+      "headers": {
+        "Content-Type": "application/json"
+      }
     }
   ]
 }
