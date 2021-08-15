@@ -1,5 +1,6 @@
-import React, { Fragment, useState, useEffect } from "react";
-import axios from 'axios';
+import * as React from "react";
+import ReactDOM from "react-dom"
+import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import "./Styles.css";
@@ -10,16 +11,24 @@ import Infobar from "./components/Infobar";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import FooterBottom from "./components/FooterBottom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Card, Form } from 'react-bootstrap';
-import { ListItem, ListItemText, List } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col, Card, Form } from "react-bootstrap";
+import { ListItem, ListItemText, List } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import { DataGrid, GridRowParams, GridRowData } from "@material-ui/data-grid";
 
 function App() {
-  const [data, setData] = useState(null);
-  const [query, setQuery] = useState('/express_backend');
- 
-  useEffect(() => {
+  const [data, setData] = React.useState(null);
+  const [query, setQuery] = React.useState("/express_backend");
+
+  const URL = "http://localhost:3001/newsletters/"; 
+
+  {/* 
+	Connection to an express server, port 5000 via proxy
+
+		  */}
+
+  React.useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
         `${query}`,
@@ -32,89 +41,82 @@ function App() {
   }, []);
 
   {/*
-      *****************************************
-      Axios post,get,delete,fetch,etc...
-      *****************************************
+      ******************************************************
+      Axios post,get,delete,put(update), async, await etc...
+      ******************************************************
   */}
-  {/* 
-      !!!   Watch how to insert with FormData     !!!
 
+  {/* 
+    Anoter example to insert data into JSON db ( using FormData()), and axios.all();
     var histo = new FormData();
     histo.append('id_booking', this.last_id);
-    histo.append('name', this.name);
-    histo.append('email', this.email);
-
     axios.all([
      axios.post("domain.com/api/v1/booking").then(response => (this.last_id = response.data['last_id'])),
   */}
+	
+  {/* Getting a last id of an inserted Newsletter */}	
   const getLastId = () => { 
-    axios.get('http://localhost:3001/newsletters/')
+    axios.get(URL)
     .then((response) => {
         const lastId = JSON.stringify(response.data[response.data.length-1].id);
         return lastId;
    });
   }
 
-  const AddSubscription = (userEmail) => {
-    axios.post('http://localhost:3001/newsletters/', {
+  {/* Getting data from db */}
+  const [getSub, setSubscriptions] = React.useState([]);
+ 
+  const AddSubscription = userEmail => {
+    axios.post(URL, {
       id: getLastId()+1,
       email: userEmail,
       isSet: true,
         headers: {
-        // Overwrite Axios's automatically set Content-Type
+	      // A way to overwrite the Axios's automatically set Content-Type parameters
         'Content-Type': 'application/json'
         }
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-
-  const getIDviaEmail = (setEmail) => { 
-    const [getResponse, setResponse] = useState([]);
-
-    useEffect(() => {
-    axios.get('http://localhost:3001/newsletters/', {
-      params: {
-        email: setEmail
-      }
-    })
-    .then((response) => {
-      //const emailID = response.data[0].id;
-      let id = response.data[0].id;
-      setResponse(response.data);
+    .then((response) => { 
+      // Setting values to an async function setPost:
+	console.log(response);
     })
     .catch((error) => {
       console.log(error);
     });
-  },[])
-
-  return <div><ul>{
-        getResponse.map(post => <li key={getResponse.id}>{getResponse.id}</li>)
-    }
-    </ul></div>
   }
- 
 
-  const DeleteSubscription = (setIDEmail) => {
-    let abc = getIDviaEmail('aivaras.adukauskas@gmail.com');
-    
-    const getResult = (abc)=>{
-      abc.getPromise()
-          .then(function(response) {
-              console.log("response:" +response)
-              return response;
-          })
-    }    
-    getResult(abc);
- 
-    axios.delete("http://localhost:3001/newsletters/",{
-      params:{
-        id: 2
-      }
+ async function getLId(mail) { 
+   const data = await axios.get(URL,{
+	params:{
+		  email: mail
+		}
+    	}
+    )
+    .then((response) => {
+        return JSON.stringify(response.data[0].id);
+   });
+   return data;
+  }
+
+  {/* getting an array as a return to a setResponse useState function  */}
+  
+  const DeleteSubscription = async (getEmail) => {
+    const getID = await getLId(getEmail); 
+    axios.delete(`${URL}${getID}`)
+    .then((response) => {
+        //handle success
+        console.log(response);
+    }).catch((response) => {
+        //handle error
+        console.log(response);
+    });
+  }
+
+  const UpdateSubscription = async (getEmail) => {
+    const getID = await getLId(getEmail); 
+    axios.put(`${URL}${getID}`,{
+      email: getEmail,
+      isSet: true
     })
     .then((response) => {
         //handle success
@@ -125,31 +127,27 @@ function App() {
     });
   }
 
+  const handleRowAfterEdit = (params: GridRowData) => {
+    const api: Grid.api = params.api;
+    const value = params.row.email;
+
+    //https://codesandbox.io/s/fervent-pine-rvc6r?file=/src/App.tsx:2205-2409
+    console.log("false");
+  
+  }
+
   const FetchSubscription = (id) => { 
-    axios.get('http://localhost:3001/newsletters/${id}')
+    axios.get(`${URL}${id}`)
     .then((response) => {
         console.log(response); 
         const subData = response.data; 
         return subData;
     });
   }
-  {/* Getting data from db */}
-  const [getSub, setSubscriptions] = useState([]);
 
-  const FetchSubscriptions = () => { 
-    axios.get('http://localhost:3001/newsletters/')
-    .then((response) => {
-        console.log(response); 
-        const subData = response.data; 
-        setSubscriptions(subData);
-    });
-  }
-  
-  useEffect(() => FetchSubscriptions(), [])
-  
   {/* Adding functionality to Add button */}
   
-  const [getNewsletterValue, setNewsletterValue] = useState(null);
+  const [getNewsletterValue, setNewsletterValue] = React.useState(null);
   
   function HandleChange(event) {
     setNewsletterValue(event.target.value);
@@ -157,43 +155,78 @@ function App() {
 
   {/* Adding functionality to Add button */}
 
-  const [getDeleteValue, setDeleteValue] = useState(null);
+  const [getDeleteValue, setDeleteValue] = React.useState(null);
  
   function HandleDelete(event) {
     setDeleteValue(event.target.value);
   };
 
+  {/* Columns of data table */}
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 90 },
+    {
+      field: 'email',
+      headerName: 'User Email',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'isSet',
+      headerName: 'Is Set?',
+      type: 'boolean',
+      width: 110,
+      editable: true,
+      
+    },
+   
+  ];
+
+  const FetchSubscriptions = () => { 
+    axios.get(URL)
+    .then((response) => {
+        console.log(response); 
+        const subData = response.data; 
+        setSubscriptions(subData);
+    });
+  }
+
+  {/* Making changed data reload using React.useEffect */}
+  React.useEffect(() => FetchSubscriptions());
+  
+  {/**
+    React.useEffect(() => FetchSubscriptions(), []);
+    to display data once
+  */}
+
   return (
     <div className="App">
     {/* Container element from bootstrap */}
+    
     <Container fluid> 
       {/* ReactJS element <Fragment> and imports */}
-      <Fragment>
+      <React.Fragment>
         <Header />
         <TopNav />
         <ContainerMenu />
 	       <div className="App-nx">
             <p className="App-intro">
               <div className="App-data">
+                {/* Data from express server: */}
                 { data }
-                {/* console.log(FetchSubscription(1)) */}
-                {/* console.log(FetchSubscriptions()) */ }
+               
                 <div className="test" style={{backgroundColor: 'red', width: '200px', height: '300px'}}>
-                {/* createRef being used to get value */}
-                {/*<input type="text" value="17" ref={textInput}/>*/}
                 <input
                 className="AddBar"
                 type="text"
                 placeholder="Type in your email"
-                value={getNewsletterValue}
-                onChange={HandleChange}/>
-
+                onChange={HandleChange}
+                value={getNewsletterValue}/>
                 <input
                 className="DeleteBar"
                 type="text"
                 placeholder="Type in your email"
-                value={getDeleteValue}
-                onChange={HandleDelete}/>
+                value={getDeleteValue}/>
               </div>
                 {
                   getSub.map((newsletter) => (
@@ -204,10 +237,24 @@ function App() {
                   </List>)
                   ) 
                 }
+                <div style={{ height: 400, width: '100%' }}>
+                <DataGrid
+                rows={getSub}
+                columns={columns}
+                pageSize={5}
+                checkboxSelection
+                disableSelectionOnClick// handleRowAfterEdit  
+                onRowEnter={console.log()}
+                onRowClick={handleRowAfterEdit}//UpdateSubscription(event.target.value)}}
+                />
+	  	{/*
+
+			*/}
+                </div>
                   
-                {/* Getting ef input value */}
-                <Button variant="outlined" onClick={() => { AddSubscription(getNewsletterValue) }} >Add Value</Button>
-                <Button variant="outlined" onClick={() => { DeleteSubscription(getDeleteValue) }} >Remove Value</Button>  
+                {/* Getting input value, Add, Delete functions */}
+                <Button variant="outlined" onClick={() => { AddSubscription(getNewsletterValue); }} >Add Value</Button>
+                <Button variant="outlined" onClick={() => { DeleteSubscription(getDeleteValue); }} >Remove Value</Button>  
               </div>
             </p>
         </div>
@@ -215,7 +262,7 @@ function App() {
         <Footer />
         <Newsletter />
         <FooterBottom />
-      </Fragment>
+      </React.Fragment>
     </Container>
   </div>
     
