@@ -12,7 +12,7 @@ import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import FooterBottom from "./components/FooterBottom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Card, Form } from "react-bootstrap";
+import { Container, Row, Col, Car, Form } from "react-bootstrap";
 import { ListItem, ListItemText, List } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { DataGrid, GridRowParams, GridRowData } from "@material-ui/data-grid";
@@ -208,7 +208,7 @@ function App() {
       <React.Fragment>
         <Header />
         <TopNav />
-        <ContainerMenu />
+        <ContainerMenu picName='./components/images/1.png' widthImg='768'/>
 	       <div className="App-nx">
             <p className="App-intro">
               <div className="App-data">
