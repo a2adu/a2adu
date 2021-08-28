@@ -166,8 +166,12 @@
 			console.log('7 Uzdavinys:');
 			var aQuestion =	 function(){ 
 				readline.question('Iveskite skaiciu [Ivestas 0 baigia sk. seka]: ', function(sk){
-						if (sk != 0 || !(sk == 0 && sk.length == 1)){
+						if (sk != 0){
+
 							arr.push(sk);
+							while (arr[0] != abs(arr[sk.length]-[arr[sk]])){
+									arrsk++
+							}
 							console.log(arr);
 							aQuestion();
 						}else{ 

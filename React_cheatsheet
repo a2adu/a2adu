@@ -1,2 +1,100 @@
 https://devhints.io/react
 Web for revision
+
+Pro tips:
+
+Whenever possible use a functional components instead of a class comps
+(if you don't need to use an internal state or life cycle methods):
+
+Benefits - less code, easier to understand, stateless, simpler to test,
+no 'this' binding, easier to extract smaller components;
+
+Keep your components small, e.g.:
+
+Include a user info component on a Comment component section, less code;
+
+Understand how handle this on a class es6 class:
+
+1.) bind it in render method:
+
+function logMessage(){}
+
+render(){
+	<input onClick="this.logMessage.bind(this)}/>
+}
+
+It will start every time a page re-renders, which is causing performance issues.
+
+2.) bind it in render method but use an arrrow function:
+
+render(){
+	<input onClick={() => this.logMessage()}
+}
+
+3.) bind in a constructor (solving performance issue):
+
+class main extends component{
+	constructor(props){
+		super(props); // shall be supperred...
+		this.state = { message : 'Hi'};
+		this.logMessage = this.logMessage.bind(this);
+	}
+} 
+
+4.) bind in a class property (solves method 1 and 2 performance issue + avoids a repetition of method 3, to note it does rely on an experimental features of ECMAS script specifications, u can enable an experimetal features with installing a babel package and react-create-app does install it automatically):
+
+class main extends component{
+	state = {
+		message = 'Hi';
+		};}
+
+	logMessage = () => {
+		console.log('');
+	}
+
+	render(){
+		return(
+			<input onClick={this.logMessage}/>
+		);
+	}
+};
+
+Use a function in setState not an object:
+
+-- React does not guarantee state changes are applied immediately --
+-- this.state may not be what you think it is --
+
+an object ex.:
+
+this.setState({correctData: !this.state.correctData});
+
+we could write it like so:
+
+this.setState(
+	(prevState, props) => {
+		return { correctData: !this.state.correctData }
+	}
+);
+
+//Function will receive the previous state as its first argument, and the props at the time the update is applied as its second argument.
+
+
+
+Install and use a prop-types to check your props and finding bugs(data types):
+
+npm i prop-types
+
+import PropTypes from 'prop-types';
+
+class Welcome extends component{
+	render(){
+		return <h1> Hello {this.props.name}</h1>;
+	}
+}
+
+Welcome.propTypes = {
+	name: PropTypes.string.isRequired // if it is required, add .isRequired
+	
+}
+
+

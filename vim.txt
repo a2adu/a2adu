@@ -68,3 +68,4 @@ _____________________________________________________________________
 To get to a certain line of a code just simply type:
 
 :line number, e.g.: :22 
+To remove a last line on a file use: sed -i '$ d' git.txt 

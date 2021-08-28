@@ -192,7 +192,7 @@ function App() {
   }
 
   {/* Making changed data reload using React.useEffect */}
-  React.useEffect(() => FetchSubscriptions());
+  React.useEffect(() => FetchSubscriptions(), []);
   
   {/**
     React.useEffect(() => FetchSubscriptions(), []);
@@ -245,7 +245,7 @@ function App() {
                 checkboxSelection
                 disableSelectionOnClick// handleRowAfterEdit  
                 onRowEnter={console.log()}
-                onRowClick={handleRowAfterEdit}//UpdateSubscription(event.target.value)}}
+                onRowClick={console.log('clicked')}//UpdateSubscription(event.target.value)}}
                 />
 	  	{/*
 
@@ -258,10 +258,6 @@ function App() {
               </div>
             </p>
         </div>
-        <Infobar />
-        <Footer />
-        <Newsletter />
-        <FooterBottom />
       </React.Fragment>
     </Container>
   </div>
