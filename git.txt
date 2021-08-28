@@ -170,10 +170,18 @@ git config --global --unset credential.helper
 git config --system --unset credential.helper
 Various problem solving examples:
 https://www.gitkraken.com/learn/git/problems
+
 Create new branch and switch to it:
- git checkout -b cart
+
+Before you switch between a branches, make sure that everything is commited and pushed to a github server.
+
+gith branch - to check all branches that exist
+
+git checkout -b cart
 
 This command is a shorthand to to:
- git branch cart
+git branch cart
 git checkout cart
+
+to switch on another branch always use git add, git commit to a current branch,then git checkout <branch name>
 
