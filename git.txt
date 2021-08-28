@@ -192,7 +192,7 @@ git push origin <vue_proj>
 After a bug was fixed, just simply merge it on the main branch:
 
 git checkout main
-git merge vue_proj // [bug fix, etc]
+git merge vue_platform //a branch name here... [bug fix, etc]
 git push origin main
 
 
