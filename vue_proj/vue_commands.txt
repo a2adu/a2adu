@@ -1,0 +1,18 @@
+Create vue project:
+
+npm i -g @vue/cli
+//then
+vue create hello-world
+
+or using webpack:
+
+npm i -g vue-cli
+npm i -g @vue/cli-init
+
+vue init webpack <appname>
+
+cd <appname>
+
+npm i
+
+npm run dev // it starts on port 8080
