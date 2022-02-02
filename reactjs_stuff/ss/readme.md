@@ -15,4 +15,5 @@ Usage: npx https://gist.github.com/a2adu/a715a4956760e1e42e3efce298942c0a/ <br/>
     <a role="menuitem" class="dropdown-menu dropdown-menu-sw UnderlineNav-item hx_underlinenav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item selected" href="https://gist.github.com/" data-ga-click="Header, create new gist">New gist</a>
     </details-menu>
     </details>
+    </summary>
 </div>
