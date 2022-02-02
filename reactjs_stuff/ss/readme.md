@@ -12,6 +12,8 @@ Usage: npx https://gist.github.com/a2adu/a715a4956760e1e42e3efce298942c0a/ <br/>
       <svg aria-hidden="true" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-plus">
       <path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path></svg> <span class="dropdown-caret" role="menu">Add some new gists...</span>
     </summary>
+    <details-menu class="dropdown-menu dropdown-menu-sw" role="menu">
     <a role="menuitem" class="dropdown-item dropdown-menu dropdown-menu-sw" href="https://gist.github.com/" data-ga-click="Header, create new gist">New gist</a>
-  </details>
+    </details-menu>
+    </details>
 </div>
