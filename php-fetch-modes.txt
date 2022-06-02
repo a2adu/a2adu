@@ -1,0 +1,20 @@
+Fetch Modes
+Both fetch() and fetchAll()
+
+PDO::FETCH_NUM - Fetch a numeric array
+PDO::FETCH_ASSOC - Fetch an associative array
+PDO::FETCH_COLUMN - Fetch just one column. Scalar if fetch() is used; 1d array if fetchAll() is used. If fetch(), then you can use fetchColumn() for syntactic sugar instead
+PDO::FETCH_CLASS | PDO::FETCH_CLASSTYPE - Fetches an object with a class name according to the database value. If class doesn't exist, will default to stdClass
+Just fetch()
+
+PDO::FETCH_OBJ - Fetch as a generic stdClass Object. It's advisable to use the fetchObject() syntactic sugar instead, as it allows you fetch an anonymous and specified class. You can still use PDO::FETCH_CLASS, but you must set it with setFetchMode(PDO::FETCH_CLASS, 'MyClass'), followed by fetch(). Can be used with fetchAll(), but not preferred, as it's less versatile
+PDO::FETCH_LAZY - Fetches a PDORow reference that has the ability to be an object, associative or numeric array. Is memory-efficient, as it will strictly fetch the results when an object, associative or numeric index is called
+PDO::FETCH_INTO - Fetch into an existing class. Must use setFetchMode(PDO::FETCH_INTO, $myClass), followed by fetch()
+Just fetchAll()
+
+PDO::FETCH_CLASS - Fetch as either a generic stdClass Object or into an existing class if specified; the same as using PDO::FETCH_OBJ if anonymous object, so it makes more sense to use this, as it's more flexible. Can be used with fetch() as well, but isn't preferred.
+PDO::FETCH_KEY_PAIR - Fetch a key/value pair with the first column as a unique key and second one as the single value
+PDO::FETCH_UNIQUE - Same as PDO::FETCH_KEY_PAIR, only the value part is an array
+PDO::FETCH_GROUP - Fetch by a common column name and group all rows to that key as an array of associative arrays
+PDO::FETCH_GROUP | PDO::FETCH_COLUMN - Is the same as PDO::FETCH_GROUP, only the value part is an array of a 1d numeric arrays
+PDO::FETCH_GROUP | PDO::FETCH_CLASS - Same as PDO::FETCH_GROUP, but with an array of object arrays instead
